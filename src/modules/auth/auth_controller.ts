@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import { registerNewUser, loginUser, googleAuth } from "../auth/auth_service.js";
+import { generateToken, verifyToken } from "../../utils/jwt.handle.js";
+import { Auth } from "./auth_model.js";
 
 const registerCtrl = async ({body}: Request, res: Response) => {
     try{
@@ -81,6 +83,7 @@ const googleAuthCallback = async (req: Request, res: Response) => {
         res.redirect('/login?error=server_error');
     }
 };
+
 
 
 export { registerCtrl, loginCtrl,googleAuthCtrl, googleAuthCallback };
